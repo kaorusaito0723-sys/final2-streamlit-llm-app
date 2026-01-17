@@ -121,11 +121,21 @@ def initialize_retriever():
     # 埋め込みモデルの用意
     embeddings = OpenAIEmbeddings()
     
+
+    from langchain.text_splitter import CharacterTextSplitter
+    import streamlit as st
+
+    from config.rag_config import (
+        CHUNK_SIZE,
+        CHUNK_OVERLAP,
+        CHUNK_SEPARATOR,
+        RETRIEVER_K,
+    )
     # チャンク分割用のオブジェクトを作成
     text_splitter = CharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50,
-        separator="\n"
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP,
+        separator=CHUNK_SEPARATOR
     )
 
     # チャンク分割を実施
@@ -135,7 +145,7 @@ def initialize_retriever():
     db = Chroma.from_documents(splitted_docs, embedding=embeddings)
 
     # ベクターストアを検索するRetrieverの作成
-    st.session_state.retriever = db.as_retriever(search_kwargs={"k": 5})
+    st.session_state.retriever = db.as_retriever(search_kwargs={"k": RETRIEVER_K})
 
 
 def initialize_session_state():
