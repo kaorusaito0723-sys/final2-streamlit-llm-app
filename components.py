@@ -18,7 +18,7 @@ def display_app_title():
     """
     タイトル表示
     """
-    st.markdown(f"## {ct.APP_NAME}")
+    st.markdown(f"<h1 style='text-align:center;'>{ct.APP_NAME}</h1>", unsafe_allow_html=True)
 
 
 
