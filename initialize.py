@@ -122,9 +122,6 @@ def initialize_retriever():
     embeddings = OpenAIEmbeddings()
     
 
-    from langchain.text_splitter import CharacterTextSplitter
-    import streamlit as st
-
     from config.rag_config import (
         CHUNK_SIZE,
         CHUNK_OVERLAP,
