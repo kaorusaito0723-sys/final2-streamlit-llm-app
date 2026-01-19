@@ -24,11 +24,25 @@ def display_app_title():
 
 def display_initial_ai_message():
     """
-    AIメッセージの初期表示
+    AIメッセージの初期表示（緑文字＋薄緑背景）
     """
     with st.chat_message("assistant"):
-        # 「st.success()」とすると緑枠で表示される
-        st.markdown("こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。上記で利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
+        st.markdown(
+            """
+            <div style="
+                background-color: #e8f5e9;
+                color: #2e7d32;
+                padding: 12px 16px;
+                border-radius: 8px;
+                line-height: 1.6;
+                font-weight: 500;
+            ">
+                こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。<br>
+                サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 
